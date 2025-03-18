@@ -1,6 +1,6 @@
-FROM golang:alpine AS builder
+FROM golang:bullseye AS builder
 
-RUN apk update && apk add --no-cache git
+RUN apt-get update && apt-get install -y --no-install-recommends git
 WORKDIR $GOPATH/src/mypackage/myapp/
 COPY . .
 
@@ -16,3 +16,4 @@ COPY *.yml ./
 
 EXPOSE 8080
 ENTRYPOINT ["/site"]
+
